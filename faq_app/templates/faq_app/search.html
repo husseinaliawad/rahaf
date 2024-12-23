@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ Search</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f7f9fc;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1rem;
+            color: #666;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* Navigation */
+        .navigation {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .navigation a {
+            text-decoration: none;
+            background: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .navigation a:hover {
+            background: #1e76c1;
+        }
+
+        /* Search Form */
+        .search-section {
+            margin-bottom: 30px;
+        }
+
+        .search-section form {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .search-section input,
+        .search-section select,
+        .search-section button {
+            flex: 1;
+            font-size: 1rem;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .search-section input {
+            flex: 2;
+        }
+
+        .search-section button {
+            background: #3498db;
+            color: white;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-section button:hover {
+            background: #1e76c1;
+        }
+
+        /* Results Section */
+        .results-section {
+            margin-top: 20px;
+        }
+
+        .results-section h3 {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .results-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .results-section li {
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .results-section li:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .results-section li strong {
+            font-size: 1.1rem;
+            color: #3498db;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .results-section li p {
+            color: #555;
+            margin: 0;
+        }
+
+        .no-results {
+            text-align: center;
+            color: #666;
+            font-size: 1.2rem;
+            margin-top: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .search-section form {
+                flex-direction: column;
+            }
+
+            .search-section input,
+            .search-section select,
+            .search-section button {
+                flex: none;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Page Title -->
+        <h1>Search FAQs</h1>
+        <p>Type your question to find answers.</p>
+
+        <!-- Navigation Links -->
+        <div class="navigation">
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'add' %}">Add FAQ</a>
+        </div>
+
+        <!-- Search Form -->
+        <div class="search-section">
+            <form method="GET">
+                <input 
+                    type="text" 
+                    name="query" 
+                    placeholder="What are you looking for?" 
+                    value="{{ query }}" 
+                    required
+                >
+                <select name="model_type">
+                    <option value="boolean" {% if model_type == 'boolean' %}selected{% endif %}>Boolean Model</option>
+                    <option value="extended_boolean" {% if model_type == 'extended_boolean' %}selected{% endif %}>Extended Boolean</option>
+                    <option value="vector" {% if model_type == 'vector' %}selected{% endif %}>Vector Model</option>
+                </select>
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
+        <!-- Search Results -->
+        {% if query %}
+        <div class="results-section">
+            <h3>Results for "{{ query }}"</h3>
+            {% if faqs %}
+            <ul>
+                {% for faq in faqs %}
+                <li>
+                    <strong>{{ faq.question|safe }}</strong>
+                    <p>{{ faq.answer|safe }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p class="no-results">No results found for "{{ query }}".</p>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

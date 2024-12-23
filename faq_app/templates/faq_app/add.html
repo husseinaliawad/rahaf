@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ Management</title>
+    <style>
+        /* Global Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9fafb;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+        }
+
+        /* Header Section */
+        header {
+            grid-column: span 2;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            color: #1e88e5;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-top: 5px;
+        }
+
+        /* Form Section */
+        .form-container {
+            background: #f4faff;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #cde4ff;
+        }
+
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-container input,
+        .form-container textarea,
+        .form-container button {
+            font-size: 1rem;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .form-container input:focus,
+        .form-container textarea:focus {
+            outline: none;
+            border-color: #1e88e5;
+            background-color: #f0f8ff;
+        }
+
+        .form-container button {
+            background: #1e88e5;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+        }
+
+        .form-container button:hover {
+            background: #1565c0;
+        }
+
+        /* Students Section */
+        .students-section {
+            background: #fff6f4;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #ffe0d8;
+        }
+
+        .students-section h2 {
+            color: #d9534f;
+            margin-bottom: 15px;
+        }
+
+        .students-section ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .students-section li {
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .students-section li:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Links Section */
+        .links {
+            grid-column: span 2;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .links a {
+            color: #28a745;
+            font-weight: bold;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 2px solid #28a745;
+            border-radius: 8px;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .links a:hover {
+            background: #28a745;
+            color: white;
+        }
+
+        /* Footer Section */
+        footer {
+            grid-column: span 2;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 30px;
+        }
+
+        footer a {
+            color: #1e88e5;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <h1>FAQ Management</h1>
+            <p>Add, view, and manage FAQs with ease.</p>
+        </header>
+
+        <!-- Form Section -->
+        <div class="form-container">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Submit FAQ</button>
+            </form>
+        </div>
+
+        <!-- Students Section -->
+        <div class="students-section">
+            <h2>Student List</h2>
+            <ul>
+                <li><strong>Rahaf</strong> (ID: 114606)</li>
+                <li><strong>Samier</strong> (ID: 130262)</li>
+                <li><strong>Hedar</strong> (ID: 133902)</li>
+
+            </ul>
+        </div>
+
+        <!-- Links Section -->
+        <div class="links">
+            <a href="{% url 'search' %}">Go to Search Page</a>
+        </div>
+
+        <!-- Footer Section -->
+        <footer>
+            &copy; 2024 FAQ App | Powered by <a href="https://www.djangoproject.com/" target="_blank">Django</a>
+        </footer>
+    </div>
+
+</body>
+</html>

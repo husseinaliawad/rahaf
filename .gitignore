@@ -1,0 +1,53 @@
+# Bytecode files
+__pycache__/             # Python bytecode files
+*.pyc                    # Python bytecode files
+*.pyo                    # Optimized Python files
+*.pyd                    # Python dynamic module files
+
+# Virtual environments
+myenv/                   # Virtual environment directory (you can name it differently)
+.myenv/
+
+# Django files
+*.log                    # Log files
+*.sqlite3                # SQLite database files (if you're using SQLite)
+db.sqlite3               # Default SQLite database
+media/                   # User-uploaded files (if using Django media files)
+static/                  # Generated static files (e.g., from `collectstatic`)
+
+# IDE/editor files
+.vscode/                 # VS Code settings folder
+.idea/                   # PyCharm/IntelliJ settings folder
+*.swp                    # Swap files created by editors like Vim
+.DS_Store                # macOS Finder metadata files
+
+# Dependency management
+.pip/                    # Pip-related files
+pip-log.txt              # Pip logs
+pip-delete-this-directory.txt
+
+# Testing
+.coverage                # Code coverage reports (e.g., from pytest or coverage.py)
+*.coveragerc             # Coverage configuration file
+
+# Environment variables and secrets
+.env                     # Environment variables file (for sensitive information like API keys, secret keys)
+secret_key.txt           # If you store your Django secret key or other sensitive data in files
+
+# Python testing
+nosetests.xml            # If you use `nose` for testing
+coverage.xml             # If you use coverage.py for testing
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/      # Jupyter notebook checkpoint files
+
+# Ignore database migrations (optional, if you want to exclude migrations from Git)
+# migrations/
+# You may want to keep migrations in your Git repository, especially for Django projects,
+# but if you choose to ignore them, uncomment the line above.
+
+# Ignore build and distribution files (for packaging)
+build/                   # Build directory
+dist/                    # Distribution directory
+*.egg-info/              # Egg info directory (for Python packaging)
+*.egg                    # Python egg files
